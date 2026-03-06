@@ -101,4 +101,4 @@ countriesRouter.get("/:code", (req, res) => {
     return res.json(country);
 });
 
-export default countriesRouter;
+export default {countriesRouter};
