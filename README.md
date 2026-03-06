@@ -20,7 +20,6 @@ To get this project up and running on your local machine, follow these steps:
    git clone https://github.com/chx-bit/countries-api.git
    cd countries-api
    ```
-````
 
 2. **Install dependencies**
    Make sure you have [Node.js](https://nodejs.org/) installed, then run:
@@ -128,6 +127,3 @@ curl -X GET "http://localhost:3000/countries?currency=USD"
 ## 📄 License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
-```
-```
