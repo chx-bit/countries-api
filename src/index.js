@@ -14,21 +14,21 @@ app.use(express.static(path.join(__dirname, "../public")));
 
 // GET /ping
 app.get("/ping", async (req, res) => {
+app.get("/ping", async (req, res) => {
   const pingStart = Date.now();
 
   const countriesStart = Date.now();
   try {
-    await fetch(`${req.protocol}://${req.get("host")}/countries`, {
-      headers: { Authorization: `Bearer ${process.env.API_TOKEN}` }
-    });
+    await fetch(`${req.protocol}://${req.get("host")}/countries`);
   } catch (e) {}
   const countriesTime = Date.now() - countriesStart;
+  const pingTime = Date.now() - pingStart;
 
   res.json({
     status: "OK",
     uptime: process.uptime().toFixed(2) + "s",
     response_time: {
-      ping: Date.now() - pingStart + "ms",
+      ping: pingTime + "ms",
       countries: countriesTime + "ms"
     },
     memory: {
