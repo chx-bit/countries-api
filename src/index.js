@@ -16,9 +16,15 @@ app.use(express.static(path.join(__dirname, "../public")));
 app.get("/ping", async (req, res) => {
   const start = Date.now();
 
-  // ukur response time /countries
+  //Hit ENDPOINT /countries
   const countriesStart = Date.now();
-  await import("./api/countries.js");
+  try {
+    await fetch(`${req.protocol}://${req.get("host")}/countries`, {
+      headers: {
+        Authorization: `Bearer ${process.env.API_TOKEN}`
+      }
+    });
+  } catch (e) {}
   const countriesTime = Date.now() - countriesStart;
 
   res.json({
