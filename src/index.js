@@ -12,6 +12,7 @@ const isProd = process.env.NODE_ENV === "production";
 
 app.use(compression());
 app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
     req._startTime = Date.now();
     next();
 });
