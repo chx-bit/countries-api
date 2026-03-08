@@ -12,6 +12,11 @@ const isProd = process.env.NODE_ENV === "production";
 app.use("/countries", countriesRoutes);
 app.use(express.static(path.join(__dirname, "../public")));
 
+// GET /ping
+app.get("/ping", (req, res) => {
+    res.json({ status: "OK" });
+});
+
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "../public/index.html"));
 });
