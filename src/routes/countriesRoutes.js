@@ -60,18 +60,14 @@ routes.get("/", (req, res) => {
 
     if (language) {
         result = result.filter(c =>
-            c.languages?.some(l =>
-                l.toLowerCase().includes(language.toLowerCase())
+            c.language?.toLowerCase().includes(language.toLowerCase())
             )
-        );
     }
 
     if (currency) {
         result = result.filter(c =>
-            c.currencies?.some(cur =>
-                cur.toLowerCase().includes(currency.toLowerCase())
+            c.currency?.toLowerCase().includes(currency.toLowerCase())
             )
-        );
     }
 
     if (govType) {

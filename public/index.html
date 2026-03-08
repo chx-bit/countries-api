@@ -1,32 +1,297 @@
 <!doctype html>
-<html>
+<html lang="en">
     <head>
-        <title>My API</title>
-        <link rel="icon" type="image/png" href="/assets/bahlil.png" />
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>vZero API</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@400;700&family=JetBrains+Mono:wght@400;500;700&family=Barlow:wght@400;500&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="style.css" />
     </head>
     <body>
-        <h1>my api contry gua, support bahlleel</h1>
-        <h2>
-            this my endpoint api guejh
-            <a href="https://countriesapi-v0.vercel.app/v1/countries"
-                >nijh open</a
-            >
-        </h2>
-        <h2>
-            want see my docs ???? you wanna see ?? nah tjis ids
-            <a href="https://github.com/chx-bit/countries-api"
-                >simple api country ini woi</a
-            >
-        </h2>
-        <img src="/assets/bahlil.png" width="100px" load="lazy" />
+        <div id="cursor"></div>
+        <div id="cursor-ring"></div>
 
-        <h1>Test</h1>
-        <button id="run">Get</button>
-        <div>
-          <pre id="output">
-            
-          </pre>
-        </div>
-        <script src="./scripts/getData.js"></script>
+        <nav>
+            <div class="nav-brand">
+                <div class="dot-live"></div>
+                <span>vZero API</span>
+            </div>
+            <div class="nav-links">
+                <span class="nav-version">v1.0.0</span>
+                <a href="#endpoints" class="btn-outline-nav">Endpoints</a>
+                <a href="#playground" class="btn-outline-nav">Playground</a>
+                <a
+                    href="https://github.com/chx-bit/countries-api"
+                    target="_blank"
+                    class="btn-solid-nav"
+                    >GitHub</a
+                >
+            </div>
+        </nav>
+
+        <section id="hero">
+            <div class="section">
+                <div data-aos="fade-up" data-aos-duration="500">
+                    <span class="hero-tag"
+                        >REST API · Open Source · Free Forever</span
+                    >
+                </div>
+
+                <h1
+                    class="hero-title"
+                    data-aos="fade-up"
+                    data-aos-delay="80"
+                    data-aos-duration="600"
+                >
+                    No Login.<br />
+                    No Key.<br />
+                    <span class="accent">Just API.</span>
+                </h1>
+
+                <p
+                    class="hero-desc"
+                    data-aos="fade-up"
+                    data-aos-delay="160"
+                    data-aos-duration="600"
+                >
+                    Comprehensive country data for 200+ nations. Zero auth, zero
+                    friction. Built for developers who just want to ship.
+                </p>
+
+                <div
+                    class="hero-cta"
+                    data-aos="fade-up"
+                    data-aos-delay="240"
+                    data-aos-duration="600"
+                >
+                    <a href="#playground" class="btn-neo-red"
+                        >Try Playground →</a
+                    >
+                    <a href="#endpoints" class="btn-neo-white"
+                        >View Endpoints</a
+                    >
+                </div>
+
+                <div
+                    class="base-url-bar"
+                    data-aos="fade-up"
+                    data-aos-delay="320"
+                    data-aos-duration="600"
+                >
+                    <span class="badge-get">BASE URL</span>
+                    <span class="url">https://countriesapi-v0.vercel.app</span>
+                    <button
+                        class="copy-btn"
+                        onclick="
+                            copyText('https://countriesapi-v0.vercel.app', this)
+                        "
+                    >
+                        copy
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section id="stats">
+            <div class="section">
+                <div class="stats-grid">
+                    <div
+                        class="stat-card"
+                        data-aos="fade-up"
+                        data-aos-delay="0"
+                    >
+                        <div class="stat-num" style="color: var(--red)">
+                            200+
+                        </div>
+                        <div class="stat-label">Countries</div>
+                    </div>
+                    <div
+                        class="stat-card"
+                        data-aos="fade-up"
+                        data-aos-delay="60"
+                    >
+                        <div class="stat-num">∞</div>
+                        <div class="stat-label">Requests</div>
+                    </div>
+                    <div
+                        class="stat-card"
+                        data-aos="fade-up"
+                        data-aos-delay="120"
+                    >
+                        <div class="stat-num">0</div>
+                        <div class="stat-label">Auth Required</div>
+                    </div>
+                    <div
+                        class="stat-card"
+                        data-aos="fade-up"
+                        data-aos-delay="180"
+                    >
+                        <div class="stat-num">87%</div>
+                        <div class="stat-label">Gzip Savings</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="endpoints">
+            <div class="section">
+                <div class="section-header" data-aos="fade-up">
+                    <div class="red-line"></div>
+                    <h2 class="section-title">Endpoints</h2>
+                    <p class="section-sub">
+                        Click any row to prefill the playground.
+                    </p>
+                </div>
+
+                <div
+                    class="ep-table-wrap"
+                    data-aos="fade-up"
+                    data-aos-delay="80"
+                >
+                    <table class="ep-table">
+                        <thead>
+                            <tr>
+                                <th>Method</th>
+                                <th>Path</th>
+                                <th>Description</th>
+                                <th>Gov</th>
+                            </tr>
+                        </thead>
+                        <tbody id="endpoint-list"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="playground">
+            <div class="section">
+                <div class="section-header" data-aos="fade-up">
+                    <div class="red-line"></div>
+                    <h2 class="section-title">Playground</h2>
+                    <p class="section-sub">
+                        Test the API directly from your browser.
+                    </p>
+                </div>
+
+                <div class="pg-card" data-aos="fade-up" data-aos-delay="80">
+                    <div class="pg-row">
+                        <div>
+                            <label class="pg-label" for="filter-key"
+                                >Filter By</label
+                            >
+                            <select id="filter-key" class="pg-select">
+                                <option value="">— No Filter —</option>
+                                <option value="name">name</option>
+                                <option value="capital">capital</option>
+                                <option value="region">region</option>
+                                <option value="language">language</option>
+                                <option value="currency">currency</option>
+                                <option value="govType">govType</option>
+                                <option value="government">
+                                    government (include gov data)
+                                </option>
+                            </select>
+                        </div>
+                        <div id="val-wrap">
+                            <label class="pg-label" for="filter-value"
+                                >Value</label
+                            >
+                            <input
+                                id="filter-value"
+                                type="text"
+                                class="pg-input"
+                                placeholder="e.g. Asia, Indonesia, USD..."
+                            />
+                        </div>
+                    </div>
+
+                    <div class="pg-field">
+                        <label class="pg-label" for="iso-code"
+                            >Or Fetch by ISO2 Code</label
+                        >
+                        <input
+                            id="iso-code"
+                            type="text"
+                            maxlength="2"
+                            class="pg-input"
+                            placeholder="e.g. ID, US, JP"
+                        />
+                    </div>
+
+                    <div class="url-preview">
+                        <span class="badge-get">GET</span>
+                        <span id="url-text" class="url-text"
+                            >https://countriesapi-v0.vercel.app/v1/countries</span
+                        >
+                    </div>
+
+                    <button id="send-btn" class="btn-send">
+                        <span id="btn-label">Send Request</span>
+                        <div id="btn-spinner" class="spinner hidden"></div>
+                    </button>
+                </div>
+
+                <div id="res-wrap" class="res-card hidden" data-aos="fade-up">
+                    <div class="res-header">
+                        <div class="res-meta">
+                            <span id="res-status" class="res-status"></span>
+                            <span id="res-time" class="res-info"></span>
+                            <span id="res-count" class="res-info"></span>
+                        </div>
+                        <button class="copy-btn" onclick="copyResponse(this)">
+                            copy
+                        </button>
+                    </div>
+                    <div class="res-body">
+                        <pre id="res-pre"></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="footer-inner">
+                <div class="footer-brand">
+                    <div class="nav-brand">
+                        <div class="dot-live"></div>
+                        <span>vZero API</span>
+                    </div>
+                    <p class="footer-tagline">Free. Open Source. No Auth.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#endpoints">Endpoints</a>
+                    <a href="#playground">Playground</a>
+                    <a
+                        href="https://github.com/chx-bit/countries-api"
+                        target="_blank"
+                        >GitHub</a
+                    >
+                </div>
+                <p class="footer-copy">
+                    Built by <a href="https://github.com/chx-bit">chxbit</a> ·
+                    MIT License
+                </p>
+            </div>
+        </footer>
+
+        <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+        <script>
+            AOS.init({
+                duration: 650,
+                once: true,
+                easing: "ease-out-cubic",
+                offset: 60
+            });
+        </script>
+        <script src="script.js"></script>
     </body>
 </html>
