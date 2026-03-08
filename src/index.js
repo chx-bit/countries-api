@@ -2,7 +2,7 @@ import { countriesRoutes } from "./routes/countriesRoutes.js";
 import express from "express";
 import { fileURLToPath } from "url";
 import path from "path";
-import {compression} from 'compression'
+import compression from 'compression'
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
