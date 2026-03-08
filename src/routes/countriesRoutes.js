@@ -2,7 +2,7 @@ import { Router } from "express";
 import countries from "../api/countries.js";
 import { errorResponse } from "../utils/handlers.js";
 
-const countriesRouter = Router();
+const routes = Router();
 
 const stripGov = country => {
     const { government, ...rest } = country;
@@ -10,7 +10,7 @@ const stripGov = country => {
 };
 
 // GET /countries
-countriesRouter.get("/", (req, res) => {
+routes.get("/", (req, res) => {
     const { name, capital, region, language, currency, government, govType } =
         req.query;
 
@@ -89,16 +89,21 @@ countriesRouter.get("/", (req, res) => {
 });
 
 // GET /countries/:code
-countriesRouter.get("/:code", (req, res) => {
+routes.get("/:code", (req, res) => {
     const country = countries.find(
         c => c.iso2.toLowerCase() === req.params.code.toLowerCase()
     );
 
     if (!country) {
-      errorResponse(res, 400, "Country may not found");
+        errorResponse(res, 400, "Country may not found");
     }
 
     return res.json(country);
 });
 
-export {countriesRouter};
+// GET /ping
+routes.get("/ping", (req, res) => {
+    res.json({ status: "OK" });
+});
+
+export { routes as countriesRoutes };
