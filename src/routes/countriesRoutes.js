@@ -1,7 +1,7 @@
 import { Router } from "express";
-import countries from "../api/countries.js";
+import { countries } from "../api/v1/countries.js";
 import { errorResponse } from "../utils/handlers.js";
-
+import { formatResponse } from "../utils/handlers.js";
 const routes = Router();
 
 const stripGov = country => {
@@ -23,7 +23,7 @@ routes.get("/", (req, res) => {
         !government &&
         !govType
     ) {
-        return res.json(countries.map(stripGov));
+        return res.json(formatResponse(req, countries.map(stripGov)));
     }
 
     if (
@@ -35,7 +35,7 @@ routes.get("/", (req, res) => {
         !currency &&
         !govType
     ) {
-        return res.json(countries);
+        return res.json(formatResponse(req, countries));
     }
 
     let result = [...countries];
@@ -86,20 +86,20 @@ routes.get("/", (req, res) => {
 
     const withGov = name || govType;
     res.set("Cache-Control", "public, max-age=604800");
-    return res.json(withGov ? result : result.map(stripGov));
+    return res.json(
+        formatResponse(req, withGov ? result : result.map(stripGov))
+    );
 });
 
 // GET /countries/:code
 routes.get("/:code", (req, res) => {
-    const country = countries.find(
-        c => c.iso2.toLowerCase() === req.params.code.toLowerCase()
-    );
-
+    const iso = req.params.code;
+    const country = countries.find(c => c.iso2 === iso.toUpperCase());
     if (!country) {
         errorResponse(res, 400, "Country may not found");
     }
     res.set("Cache-Control", "public, max-age=604800");
-    return res.json(country);
+    return res.json(formatResponse(req, [country]));
 });
 
 export { routes as countriesRoutes };

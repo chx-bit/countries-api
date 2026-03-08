@@ -1,5 +1,5 @@
 import fs from "fs";
-import countries from "../api/countries.js";
+import {countries} from "../api/v1/countries.js";
 const NAME_OVERRIDE = {
     Gambia: "The Gambia",
     Ireland: "Republic of Ireland",
@@ -10,7 +10,8 @@ const NAME_OVERRIDE = {
     "Congo (Republic of the)": "Republic of the Congo",
     "Micronesia (Federated States of)": "Federated States of Micronesia",
     "Sao Tome and Principe": "São Tomé and Príncipe"
-};const GOVERNMENT_OVERRIDE = {
+};
+const GOVERNMENT_OVERRIDE = {
     Australia: {
         type: "Federal Parliamentary Constitutional Monarchy",
         leader_title: "Governor-General",
@@ -197,12 +198,12 @@ async function main() {
     }
 
     const output = `const countries = ${JSON.stringify(updated, null, 2)};\n\nexport default countries;`;
-    fs.writeFileSync("./src/api/stageOutput.js", output, "utf-8");
+    fs.writeFileSync("./src/api/v1/countries.js", output, "utf-8");
 
-    console.log("\n🎉 Done! Data saved to stageOutput.js");
+    console.log("200");
     if (skipped.length > 0) {
-        console.log(`⚠️  Skipped: ${skipped.join(", ")}`);
+        console.log(` Skipped: ${skipped.join(", ")}`);
     }
 }
 
-main().catch(err => console.error("❌ Main error:", err.message));
+main().catch(err => console.error("main error:", err.message));
