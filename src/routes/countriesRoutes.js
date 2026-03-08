@@ -85,6 +85,7 @@ routes.get("/", (req, res) => {
     }
 
     const withGov = name || govType;
+    res.set("Cache-Control", "public, max-age=604800");
     return res.json(withGov ? result : result.map(stripGov));
 });
 
@@ -97,7 +98,7 @@ routes.get("/:code", (req, res) => {
     if (!country) {
         errorResponse(res, 400, "Country may not found");
     }
-
+    res.set("Cache-Control", "public, max-age=604800");
     return res.json(country);
 });
 
