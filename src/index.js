@@ -14,7 +14,6 @@ app.use(express.static(path.join(__dirname, "../public")));
 
 // GET /ping
 app.get("/ping", async (req, res) => {
-app.get("/ping", async (req, res) => {
   const pingStart = Date.now();
 
   const countriesStart = Date.now();
