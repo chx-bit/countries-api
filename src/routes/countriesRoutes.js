@@ -11,8 +11,16 @@ const stripGov = country => {
 
 // GET /countries
 routes.get("/", (req, res) => {
-    const { name, capital, region, language, currency, government, govType } =
-        req.query;
+    const {
+        name,
+        capital,
+        region,
+        language,
+        currency,
+        government,
+        fields,
+        govType
+    } = req.query;
 
     if (
         !name &&
@@ -61,18 +69,28 @@ routes.get("/", (req, res) => {
     if (language) {
         result = result.filter(c =>
             c.language?.toLowerCase().includes(language.toLowerCase())
-            )
+        );
     }
 
     if (currency) {
         result = result.filter(c =>
             c.currency?.toLowerCase().includes(currency.toLowerCase())
-            )
+        );
     }
 
     if (govType) {
         result = result.filter(c =>
             c.government?.type?.toLowerCase().includes(govType.toLowerCase())
+        );
+    }
+
+    if (fields) {
+        const pick = fields.split(",").map(item => item.trim());
+        result = result.map(i =>
+            pick.reduce((obj, key) => {
+                if (i[key] !== undefined) obj[key] = i[key];
+                return obj;
+            }, {})
         );
     }
 
