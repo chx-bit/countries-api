@@ -50,16 +50,16 @@ The server will start at `http://localhost:3000`.
 
 A utility endpoint to download media directly via a provided URL.
 
-| Method | Endpoint | Description |
-| --- | --- | --- |
-| `GET` | `/downloader` | Fetch and download media (e.g., TikTok) as an attachment. |
+| Method | Endpoint      | Description                                               |
+| ------ | ------------- | --------------------------------------------------------- |
+| `GET`  | `/downloader` | Fetch and download media (e.g., TikTok) as an attachment. |
 
 **Query Parameters:**
 
-| Parameter | Type | Description | Required |
-| :--- | :--- | :--- | :--- |
-| `url` | `string` | The URL of the media you want to download. | ✅ Yes |
-| `type` | `string` | The platform type (e.g., `tiktok`). | ✅ Yes |
+| Parameter | Type     | Description                                            | Required |
+| :-------- | :------- | :----------------------------------------------------- | :------- |
+| `url`     | `string` | The URL of the media you want to download.             | ✅ Yes   |
+| `type`    | `string` | The platform type (e.g., `tiktok`, `facebook (Beta)`). | ✅ Yes   |
 
 **Example cURL Command:**
 
@@ -73,30 +73,30 @@ curl -X GET "https://vzeroapi.vercel.app/downloader?url=YOUR_MEDIA_URL&type=tikt
 
 Query comprehensive country data. Easily search for countries by name, region, language, currency, government type, and capital.
 
-| Method | Endpoint | Description | Government Data |
-| --- | --- | --- | --- |
-| `GET` | `/v1/countries` | Fetch all countries | ❌ No |
-| `GET` | `/v1/countries?government=true` | Fetch all countries with government data | ✅ Yes |
-| `GET` | `/v1/countries?name=X` | Filter by country name | ✅ Yes |
-| `GET` | `/v1/countries?capital=X` | Filter by capital city | ❌ No |
-| `GET` | `/v1/countries?region=X` | Filter by region | ❌ No |
-| `GET` | `/v1/countries?language=X` | Filter by language | ❌ No |
-| `GET` | `/v1/countries?currency=X` | Filter by currency | ❌ No |
-| `GET` | `/v1/countries?govType=X` | Filter by government type | ✅ Yes |
-| `GET` | `/v1/countries/:code` | Fetch single country by ISO2 code | ✅ Yes |
-| `GET` | `/ping` | Health check & performance metrics | — |
+| Method | Endpoint                        | Description                              | Government Data |
+| ------ | ------------------------------- | ---------------------------------------- | --------------- |
+| `GET`  | `/v1/countries`                 | Fetch all countries                      | ❌ No           |
+| `GET`  | `/v1/countries?government=true` | Fetch all countries with government data | ✅ Yes          |
+| `GET`  | `/v1/countries?name=X`          | Filter by country name                   | ✅ Yes          |
+| `GET`  | `/v1/countries?capital=X`       | Filter by capital city                   | ❌ No           |
+| `GET`  | `/v1/countries?region=X`        | Filter by region                         | ❌ No           |
+| `GET`  | `/v1/countries?language=X`      | Filter by language                       | ❌ No           |
+| `GET`  | `/v1/countries?currency=X`      | Filter by currency                       | ❌ No           |
+| `GET`  | `/v1/countries?govType=X`       | Filter by government type                | ✅ Yes          |
+| `GET`  | `/v1/countries/:code`           | Fetch single country by ISO2 code        | ✅ Yes          |
+| `GET`  | `/ping`                         | Health check & performance metrics       | —               |
 
 **Query Parameters:**
 
-| Parameter | Type | Description | Government Data |
-| --- | --- | --- | --- |
-| `name` | `string` | Search by country name (e.g., `Indonesia`) | ✅ Yes |
-| `capital` | `string` | Search by capital city (e.g., `Jakarta`) | ❌ No |
-| `region` | `string` | Filter by region (e.g., `Asia`, `Europe`) | ❌ No |
-| `language` | `string` | Filter by language (e.g., `Spanish`) | ❌ No |
-| `currency` | `string` | Filter by currency (e.g., `IDR`, `USD`) | ❌ No |
-| `govType` | `string` | Filter by government type (e.g., `republic`) | ✅ Yes |
-| `government` | `boolean` | Set `true` to include government data | ✅ Yes |
+| Parameter    | Type      | Description                                  | Government Data |
+| ------------ | --------- | -------------------------------------------- | --------------- |
+| `name`       | `string`  | Search by country name (e.g., `Indonesia`)   | ✅ Yes          |
+| `capital`    | `string`  | Search by capital city (e.g., `Jakarta`)     | ❌ No           |
+| `region`     | `string`  | Filter by region (e.g., `Asia`, `Europe`)    | ❌ No           |
+| `language`   | `string`  | Filter by language (e.g., `Spanish`)         | ❌ No           |
+| `currency`   | `string`  | Filter by currency (e.g., `IDR`, `USD`)      | ❌ No           |
+| `govType`    | `string`  | Filter by government type (e.g., `republic`) | ✅ Yes          |
+| `government` | `boolean` | Set `true` to include government data        | ✅ Yes          |
 
 ---
 
