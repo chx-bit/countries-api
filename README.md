@@ -21,8 +21,9 @@ To get this project up and running on your local machine, follow these steps:
 1. **Clone the repository**
 
    ```bash
-   git clone [https://github.com/chx-bit/vzero-api.git](https://github.com/chx-bit/vzero-api.git)
+   git clone [https://github.com/chx-bit/vzero-api](https://github.com/chx-bit/vzero-api.git)
    cd vzero-api
+   
 
 
 2. **Install dependencies**
