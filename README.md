@@ -45,6 +45,7 @@ A simple, fast, and lightweight REST API built with Node.js and Express.js to qu
 To get this project up and running on your local machine, follow these steps:
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/chx-bit/countries-api.git
    cd countries-api
@@ -52,6 +53,7 @@ To get this project up and running on your local machine, follow these steps:
 
 2. **Install dependencies**
    Make sure you have [Node.js](https://nodejs.org/) installed, then run:
+
    ```bash
    npm install
    ```
@@ -68,32 +70,32 @@ To get this project up and running on your local machine, follow these steps:
 
 Base URL: `https://countriesapi-v0.vercel.app`
 
-| Method | Endpoint | Description | Government Data |
-| :----- | :------- | :---------- | :-------------- |
-| `GET` | `/v1/countries` | Fetch all countries | ❌ No |
-| `GET` | `/v1/countries?government=true` | Fetch all countries with government data | ✅ Yes |
-| `GET` | `/v1/countries?name=X` | Filter by country name | ✅ Yes |
-| `GET` | `/v1/countries?capital=X` | Filter by capital city | ❌ No |
-| `GET` | `/v1/countries?region=X` | Filter by region | ❌ No |
-| `GET` | `/v1/countries?language=X` | Filter by language | ❌ No |
-| `GET` | `/v1/countries?currency=X` | Filter by currency | ❌ No |
-| `GET` | `/v1/countries?govType=X` | Filter by government type | ✅ Yes |
-| `GET` | `/v1/countries/:code` | Fetch single country by ISO2 code | ✅ Yes |
-| `GET` | `/ping` | Health check & performance metrics | — |
+| Method | Endpoint                        | Description                              | Government Data |
+| :----- | :------------------------------ | :--------------------------------------- | :-------------- |
+| `GET`  | `/v1/countries`                 | Fetch all countries                      | ❌ No           |
+| `GET`  | `/v1/countries?government=true` | Fetch all countries with government data | ✅ Yes          |
+| `GET`  | `/v1/countries?name=X`          | Filter by country name                   | ✅ Yes          |
+| `GET`  | `/v1/countries?capital=X`       | Filter by capital city                   | ❌ No           |
+| `GET`  | `/v1/countries?region=X`        | Filter by region                         | ❌ No           |
+| `GET`  | `/v1/countries?language=X`      | Filter by language                       | ❌ No           |
+| `GET`  | `/v1/countries?currency=X`      | Filter by currency                       | ❌ No           |
+| `GET`  | `/v1/countries?govType=X`       | Filter by government type                | ✅ Yes          |
+| `GET`  | `/v1/countries/:code`           | Fetch single country by ISO2 code        | ✅ Yes          |
+| `GET`  | `/ping`                         | Health check & performance metrics       | —               |
 
 ---
 
 ## 🔍 Query Parameters
 
-| Parameter | Type | Description | Government Data |
-| :-------- | :--- | :---------- | :-------------- |
-| `name` | `string` | Search by country name (e.g., `Indonesia`) | ✅ Yes |
-| `capital` | `string` | Search by capital city (e.g., `Jakarta`) | ❌ No |
-| `region` | `string` | Filter by region (e.g., `Asia`, `Europe`) | ❌ No |
-| `language` | `string` | Filter by language (e.g., `Spanish`) | ❌ No |
-| `currency` | `string` | Filter by currency (e.g., `IDR`, `USD`) | ❌ No |
-| `govType` | `string` | Filter by government type (e.g., `republic`) | ✅ Yes |
-| `government` | `boolean` | Set `true` to include government data | ✅ Yes |
+| Parameter    | Type      | Description                                  | Government Data |
+| :----------- | :-------- | :------------------------------------------- | :-------------- |
+| `name`       | `string`  | Search by country name (e.g., `Indonesia`)   | ✅ Yes          |
+| `capital`    | `string`  | Search by capital city (e.g., `Jakarta`)     | ❌ No           |
+| `region`     | `string`  | Filter by region (e.g., `Asia`, `Europe`)    | ❌ No           |
+| `language`   | `string`  | Filter by language (e.g., `Spanish`)         | ❌ No           |
+| `currency`   | `string`  | Filter by currency (e.g., `IDR`, `USD`)      | ❌ No           |
+| `govType`    | `string`  | Filter by government type (e.g., `republic`) | ✅ Yes          |
+| `government` | `boolean` | Set `true` to include government data        | ✅ Yes          |
 
 ---
 
@@ -125,16 +127,19 @@ All endpoints return a consistent response structure:
 ## 💻 Example cURL Commands
 
 ### 1. Fetch All Countries
+
 ```bash
 curl -X GET "https://countriesapi-v0.vercel.app/v1/countries"
 ```
 
 ### 2. Search by Name (Includes Government Data)
+
 ```bash
 curl -X GET "https://countriesapi-v0.vercel.app/v1/countries?name=Indonesia"
 ```
 
 **Example Response:**
+
 ```json
 {
   "logs": {
@@ -163,36 +168,43 @@ curl -X GET "https://countriesapi-v0.vercel.app/v1/countries?name=Indonesia"
 ```
 
 ### 3. Search by Region
+
 ```bash
 curl -X GET "https://countriesapi-v0.vercel.app/v1/countries?region=Europe"
 ```
 
 ### 4. Search by Currency
+
 ```bash
 curl -X GET "https://countriesapi-v0.vercel.app/v1/countries?currency=USD"
 ```
 
 ### 5. Fetch All Countries with Government Data
+
 ```bash
 curl -X GET "https://countriesapi-v0.vercel.app/v1/countries?government=true"
 ```
 
 ### 6. Filter by Government Type
+
 ```bash
 curl -X GET "https://countriesapi-v0.vercel.app/v1/countries?govType=monarchy"
 ```
 
 ### 7. Fetch Single Country by ISO2 Code
+
 ```bash
 curl -X GET "https://countriesapi-v0.vercel.app/v1/countries/ID"
 ```
 
 ### 8. Health Check
+
 ```bash
 curl -X GET "https://countriesapi-v0.vercel.app/ping"
 ```
 
 **Example Response:**
+
 ```json
 {
   "status": "OK",
@@ -216,4 +228,5 @@ curl -X GET "https://countriesapi-v0.vercel.app/ping"
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ---
-Collab with [lightning-88](https://github.com/lightning-88)
+
+Collab with [Lightning-88](https://github.com/Lightning-88)
