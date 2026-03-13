@@ -14,7 +14,7 @@
             referrerpolicy="no-referrer"
         />
         <link
-            href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@400;700&family=JetBrains+Mono:wght@400;500;700&family=Barlow:wght@400;500&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@400;700&family=JetBrains+Mono:wght@400;500;700&family=Barlow:wght@400;500&family=Playfair+Display:wght@700;900&display=swap"
             rel="stylesheet"
         />
         <link
@@ -53,27 +53,26 @@
                         >REST API · Open Source · Free Forever</span
                     >
                 </div>
-
                 <h1
                     class="hero-title"
                     data-aos="fade-up"
                     data-aos-delay="100"
                     data-aos-duration="1000"
                 >
-                    No Login.<br />
-                    No Key.<br />
-                    <span class="accent">Just API.</span>
+                    No Login.<br />No Key.<br /><span class="accent"
+                        >Just API.</span
+                    >
                 </h1>
-
                 <p
                     class="hero-desc"
                     data-aos="fade-up-right"
                     data-aos-delay="200"
                     data-aos-duration="1000"
                 >
-                    A fast, open-source collection of REST APIs featuring a comprehensive Countries API and Media Downloader. Zero auth, zero friction. Built for developers who just want to ship.
+                    A fast, open-source collection of REST APIs featuring a
+                    comprehensive Countries API and Media Downloader. Zero auth,
+                    zero friction. Built for developers who just want to ship.
                 </p>
-
                 <div
                     class="hero-cta"
                     data-aos="fade-up"
@@ -87,7 +86,6 @@
                         >View Endpoints</a
                     >
                 </div>
-
                 <div
                     class="base-url-bar"
                     data-aos="fade-up"
@@ -98,9 +96,7 @@
                     <span class="url">https://vzeroapi.vercel.app</span>
                     <button
                         class="copy-btn"
-                        onclick="
-                            copyText('https://vzeroapi.vercel.app', this)
-                        "
+                        onclick="copyText('https://vzeroapi.vercel.app', this)"
                     >
                         copy
                     </button>
@@ -147,25 +143,26 @@
                 </div>
             </div>
         </section>
+
         <section id="stats">
-            <div class="marquee-wrap"></div>
-            <div
-                class="xmarquee1"
-                data-direction="left"
-                data-speed="8000"
-                data-gap="48"
-                data-pause-on-hover="true"
-            >
-                FREE API · NO AUTH · MULTIPLE ENDPOINTS · OPEN SOURCE ·
-            </div>
-            <div
-                class="xmarquee2"
-                data-direction="right"
-                data-gap="48"
-                data-speed="10000"
-                data-rotate="0"
-            >
-                FREE API · NO AUTH · MULTIPLE ENDPOINTS · OPEN SOURCE ·
+            <div class="marquee-wrap">
+                <div
+                    class="xmarquee1"
+                    data-direction="left"
+                    data-speed="8000"
+                    data-gap="48"
+                    data-pause-on-hover="true"
+                >
+                    FREE API · NO AUTH · MULTIPLE ENDPOINTS · OPEN SOURCE ·
+                </div>
+                <div
+                    class="xmarquee2"
+                    data-direction="right"
+                    data-gap="48"
+                    data-speed="10000"
+                >
+                    FREE API · NO AUTH · MULTIPLE ENDPOINTS · OPEN SOURCE ·
+                </div>
             </div>
             <div class="section">
                 <div class="stats-grid">
@@ -174,9 +171,7 @@
                         data-aos="fade-up-right"
                         data-aos-delay="0"
                     >
-                        <div class="stat-num" style="color: var(--red)">
-                            2+
-                        </div>
+                        <div class="stat-num" style="color: var(--red)">2+</div>
                         <div class="stat-label">Core APIs</div>
                     </div>
                     <div
@@ -208,6 +203,7 @@
                 </div>
             </div>
         </section>
+
         <section id="endpoints">
             <div class="section">
                 <div class="section-header" data-aos="fade-up">
@@ -218,22 +214,72 @@
                     </p>
                 </div>
 
-                <div
-                    class="ep-table-wrap"
-                    data-aos="fade-up"
-                    data-aos-delay="80"
-                >
-                    <table class="ep-table">
-                        <thead>
-                            <tr>
-                                <th>Method</th>
-                                <th>Path</th>
-                                <th>Description</th>
-                                <th>Gov</th>
-                            </tr>
-                        </thead>
-                        <tbody id="endpoint-list"></tbody>
-                    </table>
+                <div class="ep-group" data-aos="fade-up" data-aos-delay="60">
+                    <button
+                        class="ep-group-header"
+                        onclick="toggleGroup('countries')"
+                    >
+                        <div class="ep-group-left">
+                            <span class="badge-get">GET</span>
+                            <span class="ep-group-title">/v1/countries</span>
+                            <span class="ep-group-desc"
+                                >Countries data API</span
+                            >
+                        </div>
+                        <i
+                            class="fas fa-chevron-down ep-chevron"
+                            id="chevron-countries"
+                        ></i>
+                    </button>
+                    <div class="ep-group-body hidden" id="group-countries">
+                        <div class="ep-table-wrap">
+                            <table class="ep-table">
+                                <thead>
+                                    <tr>
+                                        <th>Method</th>
+                                        <th>Path</th>
+                                        <th>Description</th>
+                                        <th>Gov</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="endpoint-list-countries"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ep-group" data-aos="fade-up" data-aos-delay="120">
+                    <button
+                        class="ep-group-header"
+                        onclick="toggleGroup('download')"
+                    >
+                        <div class="ep-group-left">
+                            <span class="badge-get">GET</span>
+                            <span class="ep-group-title">/v1/download</span>
+                            <span class="ep-group-desc"
+                                >Media downloader API</span
+                            >
+                        </div>
+                        <i
+                            class="fas fa-chevron-down ep-chevron"
+                            id="chevron-download"
+                        ></i>
+                    </button>
+                    <div class="ep-group-body hidden" id="group-download">
+                        <div class="ep-table-wrap">
+                            <table class="ep-table">
+                                <thead>
+                                    <tr>
+                                        <th>Method</th>
+                                        <th>Path</th>
+                                        <th>Description</th>
+                                        <th>Gov</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="endpoint-list-download"></tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -249,48 +295,77 @@
                 </div>
 
                 <div class="pg-card" data-aos="fade-up" data-aos-delay="80">
-                    <div class="pg-row">
-                        <div>
-                            <label class="pg-label" for="filter-key"
-                                >Filter By (Countries Only)</label
-                            >
-                            <select id="filter-key" class="pg-select">
-                                <option value="">— No Filter —</option>
-                                <option value="name">name</option>
-                                <option value="capital">capital</option>
-                                <option value="region">region</option>
-                                <option value="language">language</option>
-                                <option value="currency">currency</option>
-                                <option value="govType">govType</option>
-                                <option value="government">
-                                    government (include gov data)
-                                </option>
-                            </select>
+                    <div class="pg-field">
+                        <label class="pg-label" for="api-mode">API</label>
+                        <select id="api-mode" class="pg-select">
+                            <option value="countries">/v1/countries</option>
+                            <option value="downloader">/v1/download</option>
+                        </select>
+                    </div>
+
+                    <div id="countries-inputs">
+                        <div class="pg-row">
+                            <div>
+                                <label class="pg-label" for="filter-key"
+                                    >Filter By</label
+                                >
+                                <select id="filter-key" class="pg-select">
+                                    <option value="">— No Filter —</option>
+                                    <option value="name">name</option>
+                                    <option value="capital">capital</option>
+                                    <option value="region">region</option>
+                                    <option value="language">language</option>
+                                    <option value="currency">currency</option>
+                                    <option value="govType">govType</option>
+                                    <option value="government">
+                                        government (include gov data)
+                                    </option>
+                                </select>
+                            </div>
+                            <div id="val-wrap">
+                                <label class="pg-label" for="filter-value"
+                                    >Value</label
+                                >
+                                <input
+                                    id="filter-value"
+                                    type="text"
+                                    class="pg-input"
+                                    placeholder="e.g. Asia, Indonesia, USD..."
+                                />
+                            </div>
                         </div>
-                        <div id="val-wrap">
-                            <label class="pg-label" for="filter-value"
-                                >Value</label
+                        <div class="pg-field">
+                            <label class="pg-label" for="iso-code"
+                                >Or Fetch by ISO2 Code</label
                             >
                             <input
-                                id="filter-value"
+                                id="iso-code"
                                 type="text"
+                                maxlength="2"
                                 class="pg-input"
-                                placeholder="e.g. Asia, Indonesia, USD..."
+                                placeholder="e.g. ID, US, JP"
                             />
                         </div>
                     </div>
 
-                    <div class="pg-field">
-                        <label class="pg-label" for="iso-code"
-                            >Or Fetch by ISO2 Code</label
-                        >
-                        <input
-                            id="iso-code"
-                            type="text"
-                            maxlength="2"
-                            class="pg-input"
-                            placeholder="e.g. ID, US, JP"
-                        />
+                    <div id="downloader-inputs" class="hidden">
+                        <div class="pg-field">
+                            <label class="pg-label" for="dl-url"
+                                >Media URL</label
+                            >
+                            <input
+                                id="dl-url"
+                                type="text"
+                                class="pg-input"
+                                placeholder="e.g. https://www.tiktok.com/@user/video/..."
+                            />
+                        </div>
+                        <div class="pg-field">
+                            <label class="pg-label" for="dl-type">Type</label>
+                            <select id="dl-type" class="pg-select">
+                                <option value="tiktok">TikTok</option>
+                            </select>
+                        </div>
                     </div>
 
                     <div class="url-preview">
@@ -300,7 +375,12 @@
                         >
                     </div>
 
-                    <a href="#res-wrap" onclick="sendRequest()" id="send-btn" class="btn-send">
+                    <a
+                        href="#res-wrap"
+                        onclick="sendRequest()"
+                        id="send-btn"
+                        class="btn-send"
+                    >
                         <span id="btn-label">Send Request</span>
                         <div id="btn-spinner" class="spinner hidden"></div>
                     </a>
@@ -350,14 +430,6 @@
         </footer>
 
         <script>
-            window.addEventListener("load", () => {
-                vMarquee.init(".xmarquee");
-                vMarquee.init(".xmarquee1");
-                vMarquee.init(".xmarquee2");
-                vMarquee.init(".cmarquee");
-            });
-        </script>
-        <script>
             history.scrollRestoration = "manual";
             window.scrollTo(0, 0);
         </script>
@@ -372,5 +444,12 @@
             });
         </script>
         <script src="script.js"></script>
+        <script>
+            window.addEventListener("load", () => {
+                vMarquee.init(".xmarquee");
+                vMarquee.init(".xmarquee1");
+                vMarquee.init(".xmarquee2");
+            });
+        </script>
     </body>
 </html>

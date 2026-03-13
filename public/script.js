@@ -1,19 +1,55 @@
 const BASE = "https://vzeroapi.vercel.app";
 
-const ENDPOINTS = [
-    { path: "/v1/countries", desc: "Fetch all countries", gov: false },
-    { path: "/v1/countries?government=true", desc: "All countries + government data", gov: true },
-    { path: "/v1/countries?name=Indonesia", desc: "Filter by name", gov: true },
-    { path: "/v1/countries?capital=Jakarta", desc: "Filter by capital", gov: false },
-    { path: "/v1/countries?region=Asia", desc: "Filter by region", gov: false },
-    { path: "/v1/countries?language=Spanish", desc: "Filter by language", gov: false },
-    { path: "/v1/countries?currency=IDR", desc: "Filter by currency", gov: false },
-    { path: "/v1/countries?govType=republic", desc: "Filter by government type", gov: true },
-    { path: "/v1/countries/ID", desc: "Fetch by ISO2 code", gov: true },
-    { path: "/downloader?url=https://www.tiktok.com/@tiktokofficial/video/732560527&type=tiktok", desc: "Download media via URL", gov: false },
-    { path: "/ping", desc: "Health check & metrics", gov: false }
-];
+const ENDPOINTS = {
+    countries: [
+        { path: "/v1/countries", desc: "Fetch all countries", gov: false },
+        {
+            path: "/v1/countries?government=true",
+            desc: "All countries + government data",
+            gov: true
+        },
+        {
+            path: "/v1/countries?name=Indonesia",
+            desc: "Filter by name",
+            gov: true
+        },
+        {
+            path: "/v1/countries?capital=Jakarta",
+            desc: "Filter by capital",
+            gov: false
+        },
+        {
+            path: "/v1/countries?region=Asia",
+            desc: "Filter by region",
+            gov: false
+        },
+        {
+            path: "/v1/countries?language=Spanish",
+            desc: "Filter by language",
+            gov: false
+        },
+        {
+            path: "/v1/countries?currency=IDR",
+            desc: "Filter by currency",
+            gov: false
+        },
+        {
+            path: "/v1/countries?govType=republic",
+            desc: "Filter by government type",
+            gov: true
+        },
+        { path: "/v1/countries/ID", desc: "Fetch by ISO2 code", gov: true }
+    ],
+    download: [
+        {
+            path: "/v1/download?url=https://www.tiktok.com/@tiktok/video/123&type=tiktok",
+            desc: "Download TikTok video",
+            gov: false
+        }
+    ]
+};
 
+// cursor
 (function initCursor() {
     const dot = document.getElementById("cursor");
     const ring = document.getElementById("cursor-ring");
@@ -37,45 +73,47 @@ const ENDPOINTS = [
     });
 })();
 
+// build endpoint tables per group
 (function buildEndpoints() {
-    const tbody = document.getElementById("endpoint-list");
-
-    ENDPOINTS.forEach(ep => {
-        const tr = document.createElement("tr");
-        tr.className = "ep-row";
-        tr.innerHTML = `
-      <td><span class="badge-get">GET</span></td>
-      <td class="ep-path">${ep.path}</td>
-      <td class="ep-desc">${ep.desc}</td>
-      <td class="ep-gov ${ep.gov ? "yes" : "no"}">${ep.gov ? "✓" : "—"}</td>
-    `;
-        tr.addEventListener("click", () => fillPlayground(ep.path));
-        tbody.appendChild(tr);
+    Object.entries(ENDPOINTS).forEach(([group, eps]) => {
+        const tbody = document.getElementById(`endpoint-list-${group}`);
+        eps.forEach(ep => {
+            const tr = document.createElement("tr");
+            tr.className = "ep-row";
+            tr.innerHTML = `
+                <td><span class="badge-get">GET</span></td>
+                <td class="ep-path">${ep.path}</td>
+                <td class="ep-desc">${ep.desc}</td>
+                <td class="ep-gov ${ep.gov ? "yes" : "no"}">${ep.gov ? "✓" : "—"}</td>
+            `;
+            tr.addEventListener("click", () => fillPlayground(ep.path));
+            tbody.appendChild(tr);
+        });
     });
     setTimeout(() => AOS.refreshHard(), 100);
 })();
 
-function toggleApiMode() {
-    const mode = document.getElementById("api-mode").value;
-    if (mode === "countries") {
-        document.getElementById("countries-inputs").classList.remove("hidden");
-        document.getElementById("downloader-inputs").classList.add("hidden");
-    } else {
-        document.getElementById("countries-inputs").classList.add("hidden");
-        document.getElementById("downloader-inputs").classList.remove("hidden");
-    }
-    updatePreview();
+// toggle accordion group
+function toggleGroup(id) {
+    const body = document.getElementById(`group-${id}`);
+    const chevron = document.getElementById(`chevron-${id}`);
+    const isOpen = !body.classList.contains("hidden");
+
+    body.classList.toggle("hidden", isOpen);
+    chevron.classList.toggle("open", !isOpen);
 }
 
 function fillPlayground(path) {
     const url = new URL(BASE + path);
-    const isDownloader = url.pathname.startsWith('/downloader');
+    const isDownloader = url.pathname.startsWith("/v1/download");
 
     if (isDownloader) {
         document.getElementById("api-mode").value = "downloader";
         toggleApiMode();
-        document.getElementById("dl-url").value = url.searchParams.get("url") || "";
-        document.getElementById("dl-type").value = url.searchParams.get("type") || "tiktok";
+        document.getElementById("dl-url").value =
+            url.searchParams.get("url") || "";
+        document.getElementById("dl-type").value =
+            url.searchParams.get("type") || "tiktok";
     } else {
         document.getElementById("api-mode").value = "countries";
         toggleApiMode();
@@ -102,7 +140,20 @@ function fillPlayground(path) {
     }
 
     updatePreview();
-    document.getElementById("playground").scrollIntoView({ behavior: "smooth" });
+    document
+        .getElementById("playground")
+        .scrollIntoView({ behavior: "smooth" });
+}
+
+function toggleApiMode() {
+    const mode = document.getElementById("api-mode").value;
+    document
+        .getElementById("countries-inputs")
+        .classList.toggle("hidden", mode !== "countries");
+    document
+        .getElementById("downloader-inputs")
+        .classList.toggle("hidden", mode !== "downloader");
+    updatePreview();
 }
 
 function setValDisabled(on) {
@@ -123,8 +174,9 @@ function buildURL() {
     if (mode === "downloader") {
         const url = document.getElementById("dl-url").value.trim();
         const type = document.getElementById("dl-type").value;
-        if (url) return `${BASE}/downloader?url=${encodeURIComponent(url)}&type=${type}`;
-        return `${BASE}/downloader`;
+        return url
+            ? `${BASE}/v1/download?url=${encodeURIComponent(url)}&type=${type}`
+            : `${BASE}/v1/download`;
     }
 
     const iso = document.getElementById("iso-code").value.trim();
@@ -133,7 +185,8 @@ function buildURL() {
 
     if (iso) return `${BASE}/v1/countries/${iso}`;
     if (key === "government") return `${BASE}/v1/countries?government=true`;
-    if (key && val) return `${BASE}/v1/countries?${key}=${encodeURIComponent(val)}`;
+    if (key && val)
+        return `${BASE}/v1/countries?${key}=${encodeURIComponent(val)}`;
     return `${BASE}/v1/countries`;
 }
 
@@ -157,23 +210,23 @@ async function sendRequest() {
                 const blob = await res.blob();
                 const downloadUrl = window.URL.createObjectURL(blob);
                 const a = document.createElement("a");
-                const contentDisposition = res.headers.get('Content-Disposition');
-                let filename = "downloaded_media.mp4";
-                
-                if (contentDisposition && contentDisposition.includes('filename=')) {
-                    filename = contentDisposition.split('filename=')[1].replace(/"/g, '');
-                }
-                
+                const cd = res.headers.get("Content-Disposition");
                 a.href = downloadUrl;
-                a.download = filename;
+                a.download = cd?.includes("filename=")
+                    ? cd.split("filename=")[1].replace(/"/g, "")
+                    : "downloaded_media.mp4";
                 document.body.appendChild(a);
                 a.click();
                 a.remove();
                 window.URL.revokeObjectURL(downloadUrl);
-                
-                showResponse(res.status, ms, { success: true, message: "Download triggered via browser." });
+                showResponse(res.status, ms, {
+                    success: true,
+                    message: "Download triggered via browser."
+                });
             } else {
-                const data = await res.json().catch(() => ({ errors: "Download request failed" }));
+                const data = await res
+                    .json()
+                    .catch(() => ({ errors: "Download request failed" }));
                 showError(data.errors || "Download request failed");
             }
         } else {
@@ -191,7 +244,9 @@ async function sendRequest() {
 function setLoading(on) {
     document.getElementById("send-btn").disabled = on;
     document.getElementById("btn-spinner").classList.toggle("hidden", !on);
-    document.getElementById("btn-label").textContent = on ? "Sending..." : "Send Request";
+    document.getElementById("btn-label").textContent = on
+        ? "Sending..."
+        : "Send Request";
 }
 
 function showResponse(status, ms, data) {
@@ -200,11 +255,14 @@ function showResponse(status, ms, data) {
     el.textContent = `${status} ${status === 200 ? "OK" : "ERROR"}`;
     el.className = "res-status " + (status === 200 ? "ok" : "err");
     document.getElementById("res-time").textContent = `${ms}ms`;
-    
-    const count = data?.logs?.count ?? (Array.isArray(data?.data) ? data.data.length : null);
-    document.getElementById("res-count").textContent = count != null ? `${count} records` : "";
-    
-    document.getElementById("res-pre").innerHTML = syntaxHighlight(JSON.stringify(data, null, 2));
+    const count =
+        data?.logs?.count ??
+        (Array.isArray(data?.data) ? data.data.length : null);
+    document.getElementById("res-count").textContent =
+        count != null ? `${count} records` : "";
+    document.getElementById("res-pre").innerHTML = syntaxHighlight(
+        JSON.stringify(data, null, 2)
+    );
 }
 
 function showError(msg) {
@@ -218,33 +276,46 @@ function showError(msg) {
 }
 
 function syntaxHighlight(json) {
-    return json.replace(/("(?:\\u[a-fA-F0-9]{4}|\\[^u]|[^\\"])*"(?:\s*:)?|\b(?:true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, m => {
-        let c = "jn";
-        if (/^"/.test(m)) c = /:$/.test(m) ? "jk" : "js";
-        else if (/true|false/.test(m)) c = "jb";
-        else if (/null/.test(m)) c = "jnu";
-        return `<span class="${c}">${m}</span>`;
-    });
+    return json.replace(
+        /("(?:\\u[a-fA-F0-9]{4}|\\[^u]|[^\\"])*"(?:\s*:)?|\b(?:true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g,
+        m => {
+            let c = "jn";
+            if (/^"/.test(m)) c = /:$/.test(m) ? "jk" : "js";
+            else if (/true|false/.test(m)) c = "jb";
+            else if (/null/.test(m)) c = "jnu";
+            return `<span class="${c}">${m}</span>`;
+        }
+    );
 }
 
 function copyText(text, btn) {
     navigator.clipboard.writeText(text).then(() => {
         const orig = btn.textContent;
         btn.textContent = "copied!";
-        setTimeout(() => { btn.textContent = orig; }, 1500);
+        setTimeout(() => {
+            btn.textContent = orig;
+        }, 1500);
     });
 }
 
 function copyResponse(btn) {
-    navigator.clipboard.writeText(document.getElementById("res-pre").textContent).then(() => {
-        btn.textContent = "copied!";
-        setTimeout(() => { btn.textContent = "copy"; }, 1500);
-    });
+    navigator.clipboard
+        .writeText(document.getElementById("res-pre").textContent)
+        .then(() => {
+            btn.textContent = "copied!";
+            setTimeout(() => {
+                btn.textContent = "copy";
+            }, 1500);
+        });
 }
 
 document.getElementById("api-mode").addEventListener("change", toggleApiMode);
-document.getElementById("filter-key").addEventListener("change", onFilterChange);
-document.getElementById("filter-value").addEventListener("input", updatePreview);
+document
+    .getElementById("filter-key")
+    .addEventListener("change", onFilterChange);
+document
+    .getElementById("filter-value")
+    .addEventListener("input", updatePreview);
 document.getElementById("dl-url").addEventListener("input", updatePreview);
 document.getElementById("dl-type").addEventListener("change", updatePreview);
 document.getElementById("iso-code").addEventListener("input", function () {

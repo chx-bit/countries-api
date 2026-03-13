@@ -532,9 +532,9 @@ nav {
 }
 
 .stat-num {
-    font-family: "JetBrains";
+    font-family: "Playfair Display", serif;
     font-size: 36px;
-    font-weight: 700;
+    font-weight: 900;
     line-height: 1;
     margin-bottom: 8px;
 }
@@ -638,6 +638,68 @@ nav {
 }
 .ep-gov.no {
     color: var(--red);
+}
+
+/* accordion groups */
+.ep-group {
+    border: 1px solid var(--border);
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.ep-group-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    background: var(--bg2);
+    transition: background 0.2s;
+    text-align: left;
+    gap: 12px;
+}
+.ep-group-header:hover {
+    background: var(--bg3);
+}
+
+.ep-group-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    min-width: 0;
+}
+
+.ep-group-title {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+    font-weight: 700;
+    color: white;
+    white-space: nowrap;
+}
+
+.ep-group-desc {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+    color: var(--muted);
+    white-space: nowrap;
+}
+
+.ep-chevron {
+    color: var(--muted);
+    font-size: 12px;
+    flex-shrink: 0;
+    transition:
+        transform 0.25s ease,
+        color 0.2s;
+}
+.ep-chevron.open {
+    transform: rotate(180deg);
+    color: var(--red);
+}
+
+.ep-group-body {
+    border-top: 1px solid var(--border);
 }
 
 #playground {
@@ -756,7 +818,7 @@ nav {
 .btn-send:disabled {
     opacity: 0.55;
 }
-. .res-card {
+.res-card {
     border: 1px solid var(--border);
     overflow: hidden;
 }
