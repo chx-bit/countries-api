@@ -37,7 +37,7 @@
                 <a href="#endpoints" class="btn-outline-nav">Endpoints</a>
                 <a href="#playground" class="btn-outline-nav">Playground</a>
                 <a
-                    href="https://github.com/chx-bit/countries-api"
+                    href="https://github.com/chx-bit/vzero-api"
                     target="_blank"
                     class="btn-solid-nav"
                     >GitHub</a
@@ -71,8 +71,7 @@
                     data-aos-delay="200"
                     data-aos-duration="1000"
                 >
-                    Comprehensive country data for 200+ nations. Zero auth, zero
-                    friction. Built for developers who just want to ship.
+                    A fast, open-source collection of REST APIs featuring a comprehensive Countries API and Media Downloader. Zero auth, zero friction. Built for developers who just want to ship.
                 </p>
 
                 <div
@@ -96,11 +95,11 @@
                     data-aos-duration="1000"
                 >
                     <span class="badge-get">BASE URL</span>
-                    <span class="url">https://countriesapi-v0.vercel.app</span>
+                    <span class="url">https://vzeroapi.vercel.app</span>
                     <button
                         class="copy-btn"
                         onclick="
-                            copyText('https://countriesapi-v0.vercel.app', this)
+                            copyText('https://vzeroapi.vercel.app', this)
                         "
                     >
                         copy
@@ -117,41 +116,29 @@
                             src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
                             alt="Node.js"
                         />
-
-                        <!-- Express -->
                         <img
                             src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg"
                             alt="Express"
                             class="img-invert"
                         />
-
-                        <!-- JavaScript -->
                         <img
                             src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
                             alt="JavaScript"
                         />
-
-                        <!-- Vercel -->
                         <img
                             src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vercel/vercel-original.svg"
                             alt="Vercel"
                             class="img-invert"
                         />
-
-                        <!-- Git -->
                         <img
                             src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"
                             alt="Git"
                         />
-
-                        <!-- GitHub -->
                         <img
                             src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
                             alt="GitHub"
                             class="img-invert"
                         />
-
-                        <!-- VS Code -->
                         <img
                             src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg"
                             alt="VS Code"
@@ -169,7 +156,7 @@
                 data-gap="48"
                 data-pause-on-hover="true"
             >
-                FREE API · NO AUTH · 200+ COUNTRIES · OPEN SOURCE ·
+                FREE API · NO AUTH · MULTIPLE ENDPOINTS · OPEN SOURCE ·
             </div>
             <div
                 class="xmarquee2"
@@ -178,7 +165,7 @@
                 data-speed="10000"
                 data-rotate="0"
             >
-                FREE API · NO AUTH · 200+ COUNTRIES · OPEN SOURCE ·
+                FREE API · NO AUTH · MULTIPLE ENDPOINTS · OPEN SOURCE ·
             </div>
             <div class="section">
                 <div class="stats-grid">
@@ -188,9 +175,9 @@
                         data-aos-delay="0"
                     >
                         <div class="stat-num" style="color: var(--red)">
-                            200+
+                            2+
                         </div>
-                        <div class="stat-label">Countries</div>
+                        <div class="stat-label">Core APIs</div>
                     </div>
                     <div
                         class="stat-card"
@@ -251,34 +238,6 @@
             </div>
         </section>
 
-        <div class="cmarquee" data-speed="120000">
-            Afghanistan · Albania · Algeria · Andorra · Angola · Argentina ·
-            Armenia · Australia · Austria · Azerbaijan · Bahamas · Bahrain ·
-            Bangladesh · Belarus · Belgium · Belize · Benin · Bhutan · Bolivia ·
-            Bosnia · Botswana · Brazil · Brunei · Bulgaria · Burkina Faso ·
-            Burundi · Cambodia · Cameroon · Canada · Chad · Chile · China ·
-            Colombia · Comoros · Congo · Croatia · Cuba · Cyprus · Czech
-            Republic · Denmark · Djibouti · Dominican Republic · Ecuador · Egypt
-            · El Salvador · Estonia · Ethiopia · Fiji · Finland · France · Gabon
-            · Gambia · Georgia · Germany · Ghana · Greece · Guatemala · Guinea ·
-            Haiti · Honduras · Hungary · Iceland · India · Indonesia · Iran ·
-            Iraq · Ireland · Israel · Italy · Jamaica · Japan · Jordan ·
-            Kazakhstan · Kenya · Kuwait · Kyrgyzstan · Laos · Latvia · Lebanon ·
-            Lesotho · Liberia · Libya · Liechtenstein · Lithuania · Luxembourg ·
-            Madagascar · Malawi · Malaysia · Maldives · Mali · Malta ·
-            Mauritania · Mauritius · Mexico · Moldova · Monaco · Mongolia ·
-            Montenegro · Morocco · Mozambique · Myanmar · Namibia · Nepal ·
-            Netherlands · New Zealand · Nicaragua · Niger · Nigeria · North
-            Korea · Norway · Oman · Pakistan · Panama · Paraguay · Peru ·
-            Philippines · Poland · Portugal · Qatar · Romania · Russia · Rwanda
-            · Saudi Arabia · Senegal · Serbia · Sierra Leone · Singapore ·
-            Slovakia · Slovenia · Somalia · South Africa · South Korea · Spain ·
-            Sri Lanka · Sudan · Sweden · Switzerland · Syria · Taiwan ·
-            Tajikistan · Tanzania · Thailand · Togo · Trinidad · Tunisia ·
-            Turkey · Turkmenistan · Uganda · Ukraine · United Arab Emirates ·
-            United Kingdom · United States · Uruguay · Uzbekistan · Venezuela ·
-            Vietnam · Yemen · Zambia · Zimbabwe ·
-        </div>
         <section id="playground">
             <div class="section">
                 <div class="section-header" data-aos="fade-up">
@@ -293,7 +252,7 @@
                     <div class="pg-row">
                         <div>
                             <label class="pg-label" for="filter-key"
-                                >Filter By</label
+                                >Filter By (Countries Only)</label
                             >
                             <select id="filter-key" class="pg-select">
                                 <option value="">— No Filter —</option>
@@ -337,7 +296,7 @@
                     <div class="url-preview">
                         <span class="badge-get">GET</span>
                         <span id="url-text" class="url-text"
-                            >https://countriesapi-v0.vercel.app/v1/countries</span
+                            >https://vzeroapi.vercel.app/v1/countries</span
                         >
                     </div>
 
@@ -378,7 +337,7 @@
                     <a href="#endpoints">Endpoints</a>
                     <a href="#playground">Playground</a>
                     <a
-                        href="https://github.com/chx-bit/countries-api"
+                        href="https://github.com/chx-bit/vzero-api"
                         target="_blank"
                         >GitHub</a
                     >
