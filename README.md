@@ -1,4 +1,3 @@
-
 # 🚀 VZero API
 
 ![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
@@ -21,25 +20,23 @@ To get this project up and running on your local machine, follow these steps:
 1. **Clone the repository**
 
    ```bash
-   git clone [https://github.com/chx-bit/vzero-api](https://github.com/chx-bit/vzero-api.git)
+   git clone https://github.com/chx-bit/vzero-api.git
    cd vzero-api
-   
-
+   ```
 
 2. **Install dependencies**
-Make sure you have [Node.js](https://nodejs.org/) installed, then run:
-```bash
-npm install
 
-```
+   Make sure you have [Node.js](https://nodejs.org/) installed, then run:
 
+   ```bash
+   npm install
+   ```
 
 3. **Start the development server**
-```bash
-npm run dev
 
-```
-
+   ```bash
+   npm run dev
+   ```
 
 The server will start at `http://localhost:3000`.
 
@@ -58,6 +55,7 @@ A utility endpoint to download media directly via a provided URL.
 | `GET` | `/downloader` | Fetch and download media (e.g., TikTok) as an attachment. |
 
 **Query Parameters:**
+
 | Parameter | Type | Description | Required |
 | :--- | :--- | :--- | :--- |
 | `url` | `string` | The URL of the media you want to download. | ✅ Yes |
@@ -66,8 +64,7 @@ A utility endpoint to download media directly via a provided URL.
 **Example cURL Command:**
 
 ```bash
-curl -X GET "[https://vzeroapi.vercel.app/downloader?url=YOUR_MEDIA_URL&type=tiktok](https://vzeroapi.vercel.app/downloader?url=YOUR_MEDIA_URL&type=tiktok)" -O -J
-
+curl -X GET "https://vzeroapi.vercel.app/downloader?url=YOUR_MEDIA_URL&type=tiktok" -O -J
 ```
 
 ---
@@ -118,13 +115,12 @@ The Countries endpoints return a consistent JSON response structure:
     "version": "v1.0.0",
     "endpoint": "/v1/countries",
     "method": "GET",
-    "docs": "[https://github.com/chx-bit/vzero-api](https://github.com/chx-bit/vzero-api)",
+    "docs": "https://github.com/chx-bit/vzero-api",
     "author": "chxbit",
     "response_time": "5ms"
   },
   "data": [...]
 }
-
 ```
 
 ---
@@ -134,15 +130,13 @@ The Countries endpoints return a consistent JSON response structure:
 ### 1. Fetch All Countries
 
 ```bash
-curl -X GET "[https://vzeroapi.vercel.app/v1/countries](https://vzeroapi.vercel.app/v1/countries)"
-
+curl -X GET "https://vzeroapi.vercel.app/v1/countries"
 ```
 
 ### 2. Search by Name (Includes Government Data)
 
 ```bash
-curl -X GET "[https://vzeroapi.vercel.app/v1/countries?name=Indonesia](https://vzeroapi.vercel.app/v1/countries?name=Indonesia)"
-
+curl -X GET "https://vzeroapi.vercel.app/v1/countries?name=Indonesia"
 ```
 
 **Example Response:**
@@ -172,49 +166,42 @@ curl -X GET "[https://vzeroapi.vercel.app/v1/countries?name=Indonesia](https://v
     }
   ]
 }
-
 ```
 
 ### 3. Search by Region
 
 ```bash
-curl -X GET "[https://vzeroapi.vercel.app/v1/countries?region=Europe](https://vzeroapi.vercel.app/v1/countries?region=Europe)"
-
+curl -X GET "https://vzeroapi.vercel.app/v1/countries?region=Europe"
 ```
 
 ### 4. Search by Currency
 
 ```bash
-curl -X GET "[https://vzeroapi.vercel.app/v1/countries?currency=USD](https://vzeroapi.vercel.app/v1/countries?currency=USD)"
-
+curl -X GET "https://vzeroapi.vercel.app/v1/countries?currency=USD"
 ```
 
 ### 5. Fetch All Countries with Government Data
 
 ```bash
-curl -X GET "[https://vzeroapi.vercel.app/v1/countries?government=true](https://vzeroapi.vercel.app/v1/countries?government=true)"
-
+curl -X GET "https://vzeroapi.vercel.app/v1/countries?government=true"
 ```
 
 ### 6. Filter by Government Type
 
 ```bash
-curl -X GET "[https://vzeroapi.vercel.app/v1/countries?govType=monarchy](https://vzeroapi.vercel.app/v1/countries?govType=monarchy)"
-
+curl -X GET "https://vzeroapi.vercel.app/v1/countries?govType=monarchy"
 ```
 
 ### 7. Fetch Single Country by ISO2 Code
 
 ```bash
-curl -X GET "[https://vzeroapi.vercel.app/v1/countries/ID](https://vzeroapi.vercel.app/v1/countries/ID)"
-
+curl -X GET "https://vzeroapi.vercel.app/v1/countries/ID"
 ```
 
 ### 8. Health Check
 
 ```bash
-curl -X GET "[https://vzeroapi.vercel.app/ping](https://vzeroapi.vercel.app/ping)"
-
+curl -X GET "https://vzeroapi.vercel.app/ping"
 ```
 
 **Example Response:**
@@ -233,16 +220,14 @@ curl -X GET "[https://vzeroapi.vercel.app/ping](https://vzeroapi.vercel.app/ping
   },
   "timestamp": "2026-03-08T10:00:00.000Z"
 }
-
 ```
 
 ---
 
 ## 📄 License
 
-This project is licensed under the MIT License. See the [LICENSE](https://www.google.com/search?q=LICENSE) file for details.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ---
 
 Collab with [Lightning-88](https://github.com/Lightning-88)
-
