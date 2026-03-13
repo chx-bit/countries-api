@@ -1,316 +1,463 @@
 <!doctype html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>vZero API</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+            integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@400;700&family=JetBrains+Mono:wght@400;500;700&family=Barlow:wght@400;500&family=Playfair+Display:wght@700;900&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="style.css" />
+        <script>
+            history.scrollRestoration = "manual";
+        </script>
+    </head>
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>vZero API</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@400;700&family=JetBrains+Mono:wght@400;500;700&family=Barlow:wght@400;500&family=Playfair+Display:wght@700;900&display=swap"
-        rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
-    <link rel="stylesheet" href="style.css" />
-</head>
+    <body>
+        <div id="cursor"></div>
+        <div id="cursor-ring"></div>
 
-<body>
-    <div id="cursor"></div>
-    <div id="cursor-ring"></div>
-
-    <nav>
-        <div class="nav-brand">
-            <div class="dot-live"></div>
-            <span>vZero API</span>
-        </div>
-        <div class="nav-links">
-            <span class="nav-version">v1.0.0</span>
-            <a href="#endpoints" class="btn-outline-nav">Endpoints</a>
-            <a href="#playground" class="btn-outline-nav">Playground</a>
-            <a href="https://github.com/chx-bit/vzero-api" target="_blank" class="btn-solid-nav">GitHub</a>
-        </div>
-    </nav>
-
-    <section id="hero">
-        <div class="glow"></div>
-        <div class="section">
-            <div data-aos="fade-up" data-aos-duration="1000">
-                <span class="hero-tag">REST API · Open Source · Free Forever</span>
+        <nav>
+            <div class="nav-brand">
+                <div class="dot-live"></div>
+                <span>vZero API</span>
             </div>
-            <h1 class="hero-title" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000">
-                No Login.<br />No Key.<br /><span class="accent">Just API.</span>
-            </h1>
-            <p class="hero-desc" data-aos="fade-up-right" data-aos-delay="200" data-aos-duration="1000">
-                A fast, open-source collection of REST APIs featuring a
-                comprehensive Countries API and Media Downloader. Zero auth,
-                zero friction. Built for developers who just want to ship.
-            </p>
-            <div class="hero-cta" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">
-                <a href="#playground" class="btn-neo-red">Try Playground <i class="fas fa-arrow-right"></i></a>
-                <a href="#endpoints" class="btn-neo-white">View Endpoints</a>
+            <div class="nav-links">
+                <span class="nav-version">v1.0.0</span>
+                <a href="#endpoints" class="btn-outline-nav">Endpoints</a>
+                <a href="#playground" class="btn-outline-nav">Playground</a>
+                <a
+                    href="https://github.com/chx-bit/vzero-api"
+                    target="_blank"
+                    class="btn-solid-nav"
+                    >GitHub</a
+                >
             </div>
-            <div class="base-url-bar" data-aos="fade-up" data-aos-delay="320" data-aos-duration="1000">
-                <span class="badge-get">BASE URL</span>
-                <span class="url">https://vzeroapi.vercel.app</span>
-                <button class="copy-btn" onclick="copyText('https://vzeroapi.vercel.app', this)">
-                    copy
-                </button>
-            </div>
-            <div class="xmarquee" data-direction="left" data-speed="20000" data-gap="40">
-                <div class="marquee-img-wrap">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
-                        alt="Node.js" />
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg"
-                        alt="Express" class="img-invert" />
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
-                        alt="JavaScript" />
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vercel/vercel-original.svg"
-                        alt="Vercel" class="img-invert" />
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" />
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
-                        alt="GitHub" class="img-invert" />
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg"
-                        alt="VS Code" />
+        </nav>
+
+        <section id="hero">
+            <div class="glow"></div>
+            <div class="section">
+                <div data-aos="fade-up" data-aos-duration="1000">
+                    <span class="hero-tag"
+                        >REST API · Open Source · Free Forever</span
+                    >
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="stats">
-        <div class="marquee-wrap">
-            <div class="xmarquee1" data-direction="left" data-speed="8000" data-gap="48" data-pause-on-hover="true">
-                FREE API · NO AUTH · MULTIPLE ENDPOINTS · OPEN SOURCE ·
-            </div>
-            <div class="xmarquee2" data-direction="right" data-gap="48" data-speed="10000">
-                FREE API · NO AUTH · MULTIPLE ENDPOINTS · OPEN SOURCE ·
-            </div>
-        </div>
-        <div class="section">
-            <div class="stats-grid">
-                <div class="stat-card" data-aos="fade-up-right" data-aos-delay="0">
-                    <div class="stat-num" style="color: var(--red)">2+</div>
-                    <div class="stat-label">Core APIs</div>
-                </div>
-                <div class="stat-card" data-aos="fade-up-left" data-aos-delay="60">
-                    <div class="stat-num">
-                        <i class="fas fa-infinity"></i>
-                    </div>
-                    <div class="stat-label">Requests</div>
-                </div>
-                <div class="stat-card" data-aos="fade-up-right" data-aos-delay="120">
-                    <div class="stat-num">0</div>
-                    <div class="stat-label">Auth Required</div>
-                </div>
-                <div class="stat-card" data-aos="fade-up-left" data-aos-delay="180">
-                    <div class="stat-num">87%</div>
-                    <div class="stat-label">Gzip Savings</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="endpoints">
-        <div class="section">
-            <div class="section-header" data-aos="fade-up">
-                <div class="red-line"></div>
-                <h2 class="section-title">Endpoints</h2>
-                <p class="section-sub">
-                    Click any row to prefill the playground.
+                <h1
+                    class="hero-title"
+                    data-aos="fade-up"
+                    data-aos-delay="100"
+                    data-aos-duration="1000"
+                >
+                    No Login.<br />No Key.<br /><span class="accent"
+                        >Just API.</span
+                    >
+                </h1>
+                <p
+                    class="hero-desc"
+                    data-aos="fade-up-right"
+                    data-aos-delay="200"
+                    data-aos-duration="1000"
+                >
+                    A fast, open-source collection of REST APIs featuring a
+                    comprehensive Countries API and Media Downloader. Zero auth,
+                    zero friction. Built for developers who just want to ship.
                 </p>
-            </div>
-
-            <div class="ep-group" data-aos="fade-up" data-aos-delay="60">
-                <button class="ep-group-header" onclick="toggleGroup('countries')">
-                    <div class="ep-group-left">
-                        <span class="badge-get">GET</span>
-                        <span class="ep-group-title">/v1/countries</span>
-                        <span class="ep-group-desc">Countries data API</span>
-                    </div>
-                    <i class="fas fa-chevron-down ep-chevron" id="chevron-countries"></i>
-                </button>
-                <div class="ep-group-body hidden" id="group-countries">
-                    <div class="ep-table-wrap">
-                        <table class="ep-table">
-                            <thead>
-                                <tr>
-                                    <th>Method</th>
-                                    <th>Path</th>
-                                    <th>Description</th>
-                                    <th>Gov</th>
-                                </tr>
-                            </thead>
-                            <tbody id="endpoint-list-countries"></tbody>
-                        </table>
-                    </div>
+                <div
+                    class="hero-cta"
+                    data-aos="fade-up"
+                    data-aos-delay="300"
+                    data-aos-duration="1000"
+                >
+                    <a href="#playground" class="btn-neo-red"
+                        >Try Playground <i class="fas fa-arrow-right"></i
+                    ></a>
+                    <a href="#endpoints" class="btn-neo-white"
+                        >View Endpoints</a
+                    >
                 </div>
-            </div>
-
-            <div class="ep-group" data-aos="fade-up" data-aos-delay="120">
-                <button class="ep-group-header" onclick="toggleGroup('download')">
-                    <div class="ep-group-left">
-                        <span class="badge-get">GET</span>
-                        <span class="ep-group-title">/v1/download</span>
-                        <span class="ep-group-desc">Media downloader API</span>
-                    </div>
-                    <i class="fas fa-chevron-down ep-chevron" id="chevron-download"></i>
-                </button>
-                <div class="ep-group-body hidden" id="group-download">
-                    <div class="ep-table-wrap">
-                        <table class="ep-table">
-                            <thead>
-                                <tr>
-                                    <th>Method</th>
-                                    <th>Path</th>
-                                    <th>Description</th>
-                                    <th>Gov</th>
-                                </tr>
-                            </thead>
-                            <tbody id="endpoint-list-download"></tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="playground">
-        <div class="section">
-            <div class="section-header" data-aos="fade-up">
-                <div class="red-line"></div>
-                <h2 class="section-title">Playground</h2>
-                <p class="section-sub">
-                    Test the API directly from your browser.
-                </p>
-            </div>
-
-            <div class="pg-card" data-aos="fade-up" data-aos-delay="80">
-                <div class="pg-field">
-                    <label class="pg-label" for="api-mode">API</label>
-                    <select id="api-mode" class="pg-select">
-                        <option value="countries">/v1/countries</option>
-                        <option value="downloader">/v1/download</option>
-                    </select>
-                </div>
-
-                <div id="countries-inputs">
-                    <div class="pg-row">
-                        <div>
-                            <label class="pg-label" for="filter-key">Filter By</label>
-                            <select id="filter-key" class="pg-select">
-                                <option value="">— No Filter —</option>
-                                <option value="name">name</option>
-                                <option value="capital">capital</option>
-                                <option value="region">region</option>
-                                <option value="language">language</option>
-                                <option value="currency">currency</option>
-                                <option value="govType">govType</option>
-                                <option value="government">
-                                    government (include gov data)
-                                </option>
-                            </select>
-                        </div>
-                        <div id="val-wrap">
-                            <label class="pg-label" for="filter-value">Value</label>
-                            <input id="filter-value" type="text" class="pg-input"
-                                placeholder="e.g. Asia, Indonesia, USD..." />
-                        </div>
-                    </div>
-                    <div class="pg-field">
-                        <label class="pg-label" for="iso-code">Or Fetch by ISO2 Code</label>
-                        <input id="iso-code" type="text" maxlength="2" class="pg-input" placeholder="e.g. ID, US, JP" />
-                    </div>
-                </div>
-
-                <div id="downloader-inputs" class="hidden">
-                    <div class="pg-field">
-                        <label class="pg-label" for="dl-url">Media URL</label>
-                        <input id="dl-url" type="text" class="pg-input"
-                            placeholder="e.g. https://www.tiktok.com/@user/video/..." />
-                    </div>
-                    <div class="pg-field">
-                        <label class="pg-label" for="dl-type">Type</label>
-                        <select id="dl-type" class="pg-select">
-                            <option value="tiktok">TikTok</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="url-preview">
-                    <span class="badge-get">GET</span>
-                    <span id="url-text" class="url-text">https://vzeroapi.vercel.app/v1/countries</span>
-                </div>
-
-                <a href="#res-wrap" onclick="sendRequest()" id="send-btn" class="btn-send">
-                    <span id="btn-label">Send Request</span>
-                    <div id="btn-spinner" class="spinner hidden"></div>
-                </a>
-            </div>
-
-            <div id="res-wrap" class="res-card hidden" data-aos="fade-up">
-                <div class="res-header">
-                    <div class="res-meta">
-                        <span id="res-status" class="res-status"></span>
-                        <span id="res-time" class="res-info"></span>
-                        <span id="res-count" class="res-info"></span>
-                    </div>
-                    <button class="copy-btn" onclick="copyResponse(this)">
+                <div
+                    class="base-url-bar"
+                    data-aos="fade-up"
+                    data-aos-delay="320"
+                    data-aos-duration="1000"
+                >
+                    <span class="badge-get">BASE URL</span>
+                    <span class="url">https://vzeroapi.vercel.app</span>
+                    <button
+                        class="copy-btn"
+                        onclick="copyText('https://vzeroapi.vercel.app', this)"
+                    >
                         copy
                     </button>
                 </div>
-                <div class="res-body">
-                    <pre id="res-pre"></pre>
+                <div
+                    class="xmarquee"
+                    data-direction="left"
+                    data-speed="20000"
+                    data-gap="40"
+                >
+                    <div class="marquee-img-wrap">
+                        <img
+                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
+                            alt="Node.js"
+                        />
+                        <img
+                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg"
+                            alt="Express"
+                            class="img-invert"
+                        />
+                        <img
+                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+                            alt="JavaScript"
+                        />
+                        <img
+                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vercel/vercel-original.svg"
+                            alt="Vercel"
+                            class="img-invert"
+                        />
+                        <img
+                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"
+                            alt="Git"
+                        />
+                        <img
+                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
+                            alt="GitHub"
+                            class="img-invert"
+                        />
+                        <img
+                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg"
+                            alt="VS Code"
+                        />
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <footer>
-        <div class="footer-inner">
-            <div class="footer-brand">
-                <div class="nav-brand">
-                    <div class="dot-live"></div>
-                    <span>vZero API</span>
+        <section id="stats">
+            <div class="marquee-wrap">
+            </div>
+                <div
+                    class="xmarquee1"
+                    data-direction="left"
+                    data-speed="8000"
+                    data-gap="48"
+                    data-pause-on-hover="true"
+                >
+                    FREE API · NO AUTH · MULTIPLE ENDPOINTS · OPEN SOURCE ·
                 </div>
-                <p class="footer-tagline">Free. Open Source. No Auth.</p>
+                <div
+                    class="xmarquee2"
+                    data-direction="right"
+                    data-gap="48"
+                    data-speed="10000"
+                >
+                    FREE API · NO AUTH · MULTIPLE ENDPOINTS · OPEN SOURCE ·
+                </div>
+            <div class="section">
+                <div class="stats-grid">
+                    <div
+                        class="stat-card"
+                        data-aos="fade-up-right"
+                        data-aos-delay="0"
+                    >
+                        <div class="stat-num" style="color: var(--red)">2+</div>
+                        <div class="stat-label">Core APIs</div>
+                    </div>
+                    <div
+                        class="stat-card"
+                        data-aos="fade-up-left"
+                        data-aos-delay="60"
+                    >
+                        <div class="stat-num">
+                            <i class="fas fa-infinity"></i>
+                        </div>
+                        <div class="stat-label">Requests</div>
+                    </div>
+                    <div
+                        class="stat-card"
+                        data-aos="fade-up-right"
+                        data-aos-delay="120"
+                    >
+                        <div class="stat-num">0</div>
+                        <div class="stat-label">Auth Required</div>
+                    </div>
+                    <div
+                        class="stat-card"
+                        data-aos="fade-up-left"
+                        data-aos-delay="180"
+                    >
+                        <div class="stat-num">87%</div>
+                        <div class="stat-label">Gzip Savings</div>
+                    </div>
+                </div>
             </div>
-            <div class="footer-links">
-                <a href="#endpoints">Endpoints</a>
-                <a href="#playground">Playground</a>
-                <a href="https://github.com/chx-bit/vzero-api" target="_blank">GitHub</a>
+        </section>
+
+        <section id="endpoints">
+            <div class="section">
+                <div class="section-header" data-aos="fade-up">
+                    <div class="red-line"></div>
+                    <h2 class="section-title">Endpoints</h2>
+                    <p class="section-sub">
+                        Click any row to prefill the playground.
+                    </p>
+                </div>
+
+                <div class="ep-group" data-aos="fade-up" data-aos-delay="60">
+                    <button
+                        class="ep-group-header"
+                        onclick="toggleGroup('countries')"
+                    >
+                        <div class="ep-group-left">
+                            <span class="badge-get">GET</span>
+                            <span class="ep-group-title">/v1/countries</span>
+                            <span class="ep-group-desc"
+                                >Countries data API</span
+                            >
+                        </div>
+                        <i
+                            class="fas fa-chevron-down ep-chevron"
+                            id="chevron-countries"
+                        ></i>
+                    </button>
+                    <div class="ep-group-body hidden" id="group-countries">
+                        <div class="ep-table-wrap">
+                            <table class="ep-table">
+                                <thead>
+                                    <tr>
+                                        <th>Method</th>
+                                        <th>Path</th>
+                                        <th>Description</th>
+                                        <th>Gov</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="endpoint-list-countries"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ep-group" data-aos="fade-up" data-aos-delay="120">
+                    <button
+                        class="ep-group-header"
+                        onclick="toggleGroup('download')"
+                    >
+                        <div class="ep-group-left">
+                            <span class="badge-get">GET</span>
+                            <span class="ep-group-title">/v1/download</span>
+                            <span class="ep-group-desc"
+                                >Media downloader API</span
+                            >
+                        </div>
+                        <i
+                            class="fas fa-chevron-down ep-chevron"
+                            id="chevron-download"
+                        ></i>
+                    </button>
+                    <div class="ep-group-body hidden" id="group-download">
+                        <div class="ep-table-wrap">
+                            <table class="ep-table">
+                                <thead>
+                                    <tr>
+                                        <th>Method</th>
+                                        <th>Path</th>
+                                        <th>Description</th>
+                                        <th>Gov</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="endpoint-list-download"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <p class="footer-copy">
-                Built by <a href="https://github.com/chx-bit">chxbit</a> ·
-                MIT License
-            </p>
-        </div>
-    </footer>
+        </section>
 
-    <script>
-        history.scrollRestoration = "manual";
-        window.scrollTo(0, 0);
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/chx-bit/vmarquee@1.1.0/vmarquee.min.js"></script>
-    <script>
-        AOS.init({
-            duration: 1000,
-            once: false,
-            easing: "ease-out-cubic",
-            offset: 40
-        });
-    </script>
-    <script src="script.js"></script>
-    <script>
-        window.addEventListener("load", () => {
-            vMarquee.init(".vmarquee");
-            vMarquee.init(".xmarquee");
-            vMarquee.init(".xmarquee1");
-            vMarquee.init(".xmarquee2");
-        });
-    </script>
-</body>
+        <section id="playground">
+            <div class="section">
+                <div class="section-header" data-aos="fade-up">
+                    <div class="red-line"></div>
+                    <h2 class="section-title">Playground</h2>
+                    <p class="section-sub">
+                        Test the API directly from your browser.
+                    </p>
+                </div>
 
+                <div class="pg-card" data-aos="fade-up" data-aos-delay="80">
+                    <div class="pg-field">
+                        <label class="pg-label" for="api-mode">API</label>
+                        <select id="api-mode" class="pg-select">
+                            <option value="countries">/v1/countries</option>
+                            <option value="downloader">/v1/download</option>
+                        </select>
+                    </div>
+
+                    <div id="countries-inputs">
+                        <div class="pg-row">
+                            <div>
+                                <label class="pg-label" for="filter-key"
+                                    >Filter By</label
+                                >
+                                <select id="filter-key" class="pg-select">
+                                    <option value="">— No Filter —</option>
+                                    <option value="name">name</option>
+                                    <option value="capital">capital</option>
+                                    <option value="region">region</option>
+                                    <option value="language">language</option>
+                                    <option value="currency">currency</option>
+                                    <option value="govType">govType</option>
+                                    <option value="government">
+                                        government (include gov data)
+                                    </option>
+                                </select>
+                            </div>
+                            <div id="val-wrap">
+                                <label class="pg-label" for="filter-value"
+                                    >Value</label
+                                >
+                                <input
+                                    id="filter-value"
+                                    type="text"
+                                    class="pg-input"
+                                    placeholder="e.g. Asia, Indonesia, USD..."
+                                />
+                            </div>
+                        </div>
+                        <div class="pg-field">
+                            <label class="pg-label" for="iso-code"
+                                >Or Fetch by ISO2 Code</label
+                            >
+                            <input
+                                id="iso-code"
+                                type="text"
+                                maxlength="2"
+                                class="pg-input"
+                                placeholder="e.g. ID, US, JP"
+                            />
+                        </div>
+                    </div>
+
+                    <div id="downloader-inputs" class="hidden">
+                        <div class="pg-field">
+                            <label class="pg-label" for="dl-url"
+                                >Media URL</label
+                            >
+                            <input
+                                id="dl-url"
+                                type="text"
+                                class="pg-input"
+                                placeholder="e.g. https://www.tiktok.com/@user/video/..."
+                            />
+                        </div>
+                        <div class="pg-field">
+                            <label class="pg-label" for="dl-type">Type</label>
+                            <select id="dl-type" class="pg-select">
+                                <option value="tiktok">TikTok</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="url-preview">
+                        <span class="badge-get">GET</span>
+                        <span id="url-text" class="url-text"
+                            >https://vzeroapi.vercel.app/v1/countries</span
+                        >
+                    </div>
+
+                    <a
+                        href="#res-wrap"
+                        onclick="sendRequest()"
+                        id="send-btn"
+                        class="btn-send"
+                    >
+                        <span id="btn-label">Send Request</span>
+                        <div id="btn-spinner" class="spinner hidden"></div>
+                    </a>
+                </div>
+
+                <div id="res-wrap" class="res-card hidden" data-aos="fade-up">
+                    <div class="res-header">
+                        <div class="res-meta">
+                            <span id="res-status" class="res-status"></span>
+                            <span id="res-time" class="res-info"></span>
+                            <span id="res-count" class="res-info"></span>
+                        </div>
+                        <button class="copy-btn" onclick="copyResponse(this)">
+                            copy
+                        </button>
+                    </div>
+                    <div class="res-body">
+                        <pre id="res-pre"></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="footer-inner">
+                <div class="footer-brand">
+                    <div class="nav-brand">
+                        <div class="dot-live"></div>
+                        <span>vZero API</span>
+                    </div>
+                    <p class="footer-tagline">Free. Open Source. No Auth.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#endpoints">Endpoints</a>
+                    <a href="#playground">Playground</a>
+                    <a
+                        href="https://github.com/chx-bit/vzero-api"
+                        target="_blank"
+                        >GitHub</a
+                    >
+                </div>
+                <p class="footer-copy">
+                    Built by <a href="https://github.com/chx-bit">chxbit</a> ·
+                    MIT License
+                </p>
+            </div>
+        </footer>
+
+        <!-- <script>
+            history.scrollRestoration = "manual";
+            window.scrollTo(0, 0);
+        </script> -->
+        <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/chx-bit/vmarquee@main/vmarquee.js"></script>
+        <script>
+            AOS.init({
+                duration: 1000,
+                once: false,
+                easing: "ease-out-cubic",
+                offset: 40
+            });
+        </script>
+        <script>
+            window.addEventListener("load", () => {
+                vMarquee.init(".xmarquee");
+                vMarquee.init(".xmarquee1");
+                const el = document.querySelector(".xmarquee2");
+                if (el) {
+                    el._vm = new vMarquee.VMarquee(el);
+                    el._vm._ob?.disconnect(); 
+                }
+            });
+        </script>
+        <script src="script.js"></script>
+    </body>
 </html>
