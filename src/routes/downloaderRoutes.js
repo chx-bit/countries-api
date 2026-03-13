@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
     })
 
   const response = await fetch(
-    `https://basic-tools-light.vercel.app/api/download?url=${encodeURIComponent(url)}&type=tiktok`,
+    `https://basic-tools-light.vercel.app/api/download?url=${encodeURIComponent(url)}&type=${type}`,
     {
       method: 'GET',
     },
